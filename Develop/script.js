@@ -1,9 +1,12 @@
 //Define Variables
+var todaysDate = moment().format('l');
 
-var weatherAPI = "http://api.openweathermap.org/data/2.5/weather?q=";
 const APIKey = "&appid=cedfe23bde01de8030da3c90beae4ba5";
 
-var todaysDate = moment().format('l');
+
+var weatherAPI = "http://api.openweathermap.org/data/2.5/weather?q=";
+
+var uvIndexAPI = "http://api.openweathermap.org/data/2.5/uvi?lat=";
 
 
 // $(document).ready(function() {
@@ -30,7 +33,18 @@ function displayWeather () {
         let currentWindSpeed = response.wind.speed;
         $(".currentWindSpeed").text(currentWindSpeed);
 
-        let currentUVIndex = 
+        //UV Index Section
+        var latitude = response.coord.lat;
+        var longitude = response.coord.lon;
+        var uvIndexURL = uvIndexAPI + latitude + "&lon=" + longitude + APIKey
+        $.ajax ({
+            url: uvIndexURL,
+            method:"GET"
+        }).then(function(response) {
+            let currentUVIndex = response.value;
+            $(".currentUVIndex").text(currentUVIndex);
+        });
+
 
         console.log(currentCity);
         
