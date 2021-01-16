@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather Dashboard</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+        integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous" />
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+
+    <header>
+        <div class="jumbotron">
+            <h1 class="text-center">Weather Dashboard</h1>
+        </div>
+    </header>
+
+
+
+    <div class="container">
+        <div class="row">
+            <!-- Sidebar -->
+                <div class="col-3 search-col">
+                    <h3>Search for a City:</h3>
+                </div>
+                <div class="searchSection">
+                    <form class="d-flex">
+                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                        <button class="btn btn-outline-success" type="submit">Search</button>
+                    </form>
+                </div>
+
+                <ul class="list-group list-group-flush">
+                    <!-- <li class="list-group-item">Cras justo odio</li>
+                <li class="list-group-item">Dapibus ac facilisis in</li>
+                <li class="list-group-item">Vestibulum at eros</li> -->
+                </ul>
+        </div>
+
+
+        <!--Display Current Conditions Section-->
+            <section>
+                <div class="card">
+                    <div class="card-body">
+                        <h2 class="card-title">Lansing
+                        </h2><br>
+                        <h6> Temperature: <span class="currentTemperature"></span>°F
+                        </h6> <br>
+                        <h6> Humidity: <span class="currentHumidity"></span>%
+                        </h6> <br>
+                        <h6> Wind Speed: <span class="currentWindSpeed"></span> MPH
+                        </h6><br>
+                        <h6> UV Index: <span class="currentUVIndex"></span>
+                        </h6><br>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+    <!--Scripting Section-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW"
+        crossorigin="anonymous"></script>
+    <script src="./script.js"></script>
+
+</body>
+
+</html>

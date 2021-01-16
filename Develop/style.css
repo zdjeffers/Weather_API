@@ -1,0 +1,25 @@
+header {
+    background-color: grey;
+    padding: 20px;
+    color: white;
+}
+
+/* .sidenav {
+    height: 100%;
+    width: 20%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: lightgrey;
+    overflow-x: hidden;
+    padding-top: 20px;
+  }; */
+
+.container {
+    margin: 20px;
+    padding: 20px;
+}
+
+.card {
+    width: 500px;
+}
