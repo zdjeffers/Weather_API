@@ -23,6 +23,10 @@ function displayWeather () {
     }).then(function(response) {
         let currentCity = response.name
         $(".currentCity").text(currentCity).append(" " + todaysDate);
+        var icon = response.weather[0].icon;
+        var iconUrl = "https://openweathermap.org/img/w/" + icon + ".png";
+        $("#icon").text("<img id='icon' src=" + iconUrl + ">");
+        $(".currentCity").append(" " + iconUrl)
 
         let currentTemperature = Math.floor(((response.main.temp - 273.15) * (9/5) + 32));
         $(".currentTemperature").text(currentTemperature);
@@ -41,13 +45,17 @@ function displayWeather () {
             url: uvIndexURL,
             method:"GET"
         }).then(function(response) {
-            let currentUVIndex = response.value;
+            var currentUVIndex = response.value;
             $(".currentUVIndex").text(currentUVIndex);
-        });
 
-
-        console.log(currentCity);
-        
+            if (currentUVIndex < 4) {
+                $(".currentUVIndex").classList.add("favorable");
+            } else if (currentUVIndex >= 4 && currentUVIndex < 7) {
+                $(".currentUVIndex").classList.add("moderate");
+            } else if (currentUVIndex >= 7) {
+                $(".currentUVIndex").classList.add("severe");
+            }
+        });        
     })
 }
 

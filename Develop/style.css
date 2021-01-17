@@ -23,3 +23,15 @@ header {
 .card {
     width: 500px;
 }
+
+.favorable {
+    background-color: green;
+}
+
+.moderate {
+    background-color: orange;
+}
+
+.severe {
+    background-color: red;
+}
