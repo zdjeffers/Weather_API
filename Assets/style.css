@@ -26,12 +26,15 @@ header {
 
 .favorable {
     background-color: green;
+    color: black;
 }
 
 .moderate {
     background-color: orange;
+    color: black;
 }
 
 .severe {
     background-color: red;
+    color: black;
 }
