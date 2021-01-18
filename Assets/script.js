@@ -9,13 +9,31 @@ var uvIndexAPI = "http://api.openweathermap.org/data/2.5/uvi?lat=";
 
 var fiveDayForecastAPI = "http://api.openweathermap.org/data/2.5/forecast?q="
 
-// $(document).ready(function() {
-//     let savedSearches = JSON.parse(localStorage.getItem("pastSearches")) || [];
-// })
+var pastSearches = [];
 
+var loadSearches = function() {
+    pastSearches = JSON.parse(localStorage.getItem("pastSearches")) || [];
+    for (let i = 0; i < pastSearches.length; i++) {
+        var pastSearchList = document.createElement("li");
+        pastSearchList.textContent = pastSearches[i].toUpperCase();
+        $("#pastSearchList").appendChild(pastSearchList);
+        console.log(pastSearchList)
+        
+    }
+}
 
 function displayWeather() {
     let searchTerm = $("#searchForm").val().trim();
+
+    //Save search to history
+    if (pastSearches.indexOf(searchTerm) === -1) {
+        pastSearches.push(searchTerm);
+        JSON.stringify(localStorage.setItem("pastSearches", JSON.stringify(searchTerm)));
+      } else {
+        return;
+      }
+
+    //Create AJAX call
     var queryURL = weatherAPI + searchTerm + APIKey;
     $.ajax({
         url: queryURL,
@@ -25,8 +43,8 @@ function displayWeather() {
         $(".currentCity").text(currentCity).append(" " + todaysDate);
         var icon = response.weather[0].icon;
         var iconUrl = "https://openweathermap.org/img/w/" + icon + ".png";
-        $("#icon").attr("src", iconUrl);
-        $(".currentCity").append(" " + iconUrl)
+        console.log(iconUrl);
+        $("#currentDayIcon").attr("src", iconUrl);
 
         let currentTemperature = Math.floor(((response.main.temp - 273.15) * (9 / 5) + 32));
         $(".currentTemperature").text(currentTemperature);
@@ -75,6 +93,7 @@ function fiveDayForecast() {
             var icon = response.list[(i + 1) * 8 - 1].weather[0].icon;    
             var iconUrl = "https://openweathermap.org/img/w/" + icon + ".png";
             $("#forecast-icon" + i).attr("src", iconUrl);
+            console.log(iconUrl);
 
             let cityTemperature = Math.floor((response.list[(i + 1) * 8 - 1].main.temp - 273.15) * (9 / 5) + 32);
             $("#forecast-temp" + i).html("<br>" + cityTemperature);
@@ -92,5 +111,6 @@ $("#searchBtn").on("click", function (event) {
     event.preventDefault();
     displayWeather();
     fiveDayForecast();
+    loadSearches();
 });
 
