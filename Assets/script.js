@@ -10,28 +10,49 @@ var uvIndexAPI = "http://api.openweathermap.org/data/2.5/uvi?lat=";
 var fiveDayForecastAPI = "http://api.openweathermap.org/data/2.5/forecast?q="
 
 var pastSearches = [];
+var searchHistoryEl = document.querySelector("#pastSearchList");
+var searchFormEl = document.querySelector("#searchForm")
 
-var loadSearches = function() {
+var loadSearches = function () {
+    //Retrieve items from storage (if applicable)
     pastSearches = JSON.parse(localStorage.getItem("pastSearches")) || [];
+
+    //Loop through to make search history
     for (let i = 0; i < pastSearches.length; i++) {
         var pastSearchList = document.createElement("li");
         pastSearchList.textContent = pastSearches[i].toUpperCase();
-        $("#pastSearchList").appendChild(pastSearchList);
-        console.log(pastSearchList)
-        
+        searchHistoryEl.appendChild(pastSearchList);
     }
+    console.log(pastSearchList)
+
 }
 
-function displayWeather() {
-    let searchTerm = $("#searchForm").val().trim();
-
+searchHandler = function (event) {
+    event.preventDefault();
+    var city = searchFormEl.value.trim();
+    //create the search history dynamic list
+    if (city) {
+        weatherNow(city);
+        fiveDayForecast(city);
+        displaySearchHistory(city);
+        searchFormEl.value = "";
+        console.log(searchFormEl)
+    } else {
+        return;
+    }
     //Save search to history
     if (pastSearches.indexOf(searchTerm) === -1) {
         pastSearches.push(searchTerm);
         JSON.stringify(localStorage.setItem("pastSearches", JSON.stringify(searchTerm)));
-      } else {
+    } else {
         return;
-      }
+    }
+};
+
+function displayWeather() {
+    let searchTerm = $("#searchForm").val().trim();
+
+
 
     //Create AJAX call
     var queryURL = weatherAPI + searchTerm + APIKey;
@@ -86,11 +107,11 @@ function fiveDayForecast() {
     }).then(function (response) {
         for (let i = 0; i < 5; i++) {
             var currentDate = moment
-            .unix(response.list[(i + 1) * 8 - 1].dt)
-            .format("l");
-            $("#forecast-city-date" + i).html(currentDate);       
+                .unix(response.list[(i + 1) * 8 - 1].dt)
+                .format("l");
+            $("#forecast-city-date" + i).html(currentDate);
 
-            var icon = response.list[(i + 1) * 8 - 1].weather[0].icon;    
+            var icon = response.list[(i + 1) * 8 - 1].weather[0].icon;
             var iconUrl = "https://openweathermap.org/img/w/" + icon + ".png";
             $("#forecast-icon" + i).attr("src", iconUrl);
             console.log(iconUrl);
@@ -114,3 +135,5 @@ $("#searchBtn").on("click", function (event) {
     loadSearches();
 });
 
+//Event Listeners
+searchFormEl.addEventListener("submit", searchHandler);
