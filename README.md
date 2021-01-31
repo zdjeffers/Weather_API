@@ -10,7 +10,7 @@ This is my attempt at creating a dynamic webpage involving 3rd party API's. It p
 3rd-party-API-Weather-Dashboard
 
 ### Here is the link to the deployed site:
-[ZDJeffers Weather API](https://zdjeffers.github.io/Weather_API/develop/index.html)
+[ZDJeffers Weather API](https://zdjeffers.github.io/Weather_API/Develop/index.html)
 
 ### Final Thoughts:
 Thank you for taking the time to look at my work. If you'd like to see any of my other projects, please feel free to drop by [my GitHub Page!](https://github.com/zdjeffers)
