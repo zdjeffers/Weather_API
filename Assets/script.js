@@ -3,11 +3,11 @@ var todaysDate = moment().format('l');
 
 const APIKey = "&appid=cedfe23bde01de8030da3c90beae4ba5";
 
-var weatherAPI = "http://api.openweathermap.org/data/2.5/weather?q=";
+var weatherAPI = "https://api.openweathermap.org/data/2.5/weather?q=";
 
-var uvIndexAPI = "http://api.openweathermap.org/data/2.5/uvi?lat=";
+var uvIndexAPI = "https://api.openweathermap.org/data/2.5/uvi?lat=";
 
-var fiveDayForecastAPI = "http://api.openweathermap.org/data/2.5/forecast?q="
+var fiveDayForecastAPI = "https://api.openweathermap.org/data/2.5/forecast?q="
 
 var pastSearches = [];
 var searchHistoryEl = document.querySelector("#pastSearchList");
