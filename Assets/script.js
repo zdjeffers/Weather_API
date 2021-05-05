@@ -52,6 +52,7 @@ searchHandler = function (event) {
 function displayWeather() {
     let searchTerm = $("#searchForm").val().trim();
 
+    $("ul").prepend("<li>" + searchTerm).attr("class", "list-group-item");
 
 
     //Create AJAX call
@@ -125,8 +126,6 @@ function fiveDayForecast() {
         }
     })
 };
-
-
 
 $("#searchBtn").on("click", function (event) {
     event.preventDefault();
