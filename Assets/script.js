@@ -41,8 +41,8 @@ searchHandler = function (event) {
         return;
     }
     //Save search to history
-    if (pastSearches.indexOf(searchTerm) === -1) {
-        pastSearches.push(searchTerm);
+    if (pastSearches.indexOf(city) === -1) {
+        pastSearches.push(city);
         JSON.stringify(localStorage.setItem("pastSearches", JSON.stringify(searchTerm)));
     } else {
         return;
